@@ -12,8 +12,9 @@ const routes: Routes = [
     {path: 'registro', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'usuarios', component: UsersComponent},
+    {path: 'usuarios/:page', component: UsersComponent},
     {path: 'tarjetas', component: CreditCardsComponent},
-    { path: 'usuarios/:page', component: UsersComponent},
+    {path: 'tarjetas/:page', component: CreditCardsComponent},
     {path: '*', component: HomeComponent},
 ];
 
