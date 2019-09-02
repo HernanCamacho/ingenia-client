@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="title">
+        <h4>{{title}}</h4>
+        <hr>
+        <small>Total de usuarios: {{total}}</small>
+    </div>
+    <div class="row">
+        <div *ngFor="let user of users">
+            <div class="card" style="width: 18rem;">
+                <img src="../../../assets/img/undraw_male_avatar_323b.png" class="card-img-top" alt="undraw_male_avatar_323b">
+                <div class="card-body">
+                    <p>
+                        <small>Nombres:</small> {{ user.name }}
+                    </p>
+                    <p>
+                        <small>Apellidos:</small> {{ user.surname }}
+                    </p>
+                    <p>
+                        <small>email:</small> {{ user.email }}
+                    </p>
+                    <p>
+                        <small>Teléfono:</small> {{ user.phone_number }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example" class="pages">
+        <ul class="pagination">
+			<li class="page-item" *ngIf="page > 1"> <a class="page-link" [routerLink]="['/usuarios', pre_page]">Anterior</a></li>
+			<li class="page-item" *ngIf="page < pages"> <a class="page-link" [routerLink]="['/usuarios', next_page]">Siguiente</a></li>
+		</ul>
+    </nav>
+</div>

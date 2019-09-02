@@ -9,6 +9,7 @@ import { Global } from './global.service';
 export class UserService{
     public url: string;
     public identity;
+    public token;
 
     constructor(public _http: HttpClient){
         this.url = Global.url;
@@ -28,6 +29,11 @@ export class UserService{
         return this._http.post(this.url + 'login', params, {headers: headers});
     }
 
+    getUsers(page):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        return this._http.get(this.url + 'users?page=' + page, {headers: headers});
+    }
+
     getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity != "undefined"){
@@ -35,8 +41,18 @@ export class UserService{
         }else{
             this.identity = null;
         }
-
         return this.identity;
+    }
+
+    getToken(){
+        let token = JSON.parse(localStorage.getItem('token'));
+        if(token != "undefined"){
+            this.token = token;
+        }else{
+            this.token = null;
+        }
+
+        return this.token;
     }
 
     persistData(token, identity){
