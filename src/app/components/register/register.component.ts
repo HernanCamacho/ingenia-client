@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
          private _userService: UserService,
          private _router: Router
     ) {
-        this.title = "Aquí puedes registrarte para acceder a los datos :)";
+        this.title = "Crea una cuenta";
         this.user = new User("","","","","");
     }
 

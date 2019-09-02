@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
          private _userService: UserService,
          private _router: Router
     ) {
-        this.title = "Es momento de entrar a la aplicación";
+        this.title = "Ingresa";
         this.user = new User("","","","","");
     }
 

@@ -1,19 +1,23 @@
-<div>
-    <div class="container">
-        <div class="col-lg-8 form">
+<div class="component row">
+    <div class="col-lg-6 img">
+        <img src="../../../assets/img/undraw_Login_v483.png" alt="undraw_Login_v483">
+    </div>
+    <div class="margin login col-lg-6">
+        <div class="col-lg-12 form">
             <h3>{{title}}</h3>
             <form #loginForm="ngForm" (ngSubmit)="login(loginrForm)">
-                    <div class="form-group col-lg-8">
+                    <div class="form-group col-lg-12 margin">
                         <label>Correo electrónico:</label>
                         <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" aria-describedby="emailHelp" placeholder="Correo Electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                     </div>
-                    <div class="form-group col-lg-8">
+                    <div class="form-group col-lg-12 margin">
                         <label>Contraseña:</label>
                         <div class="input-group mb-2">
                             <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" aria-describedby="passwordHelp" placeholder="Contraseña" pattern="(?=^.{8,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                         </div>
                         <!-- <small class="form-text text-muted" *ngIf="!password.valid && password.touched">Tus datos estarán seguros.</small> -->
                     </div>
+                    <small>¿Aún no tienes una cuenta? Regístrate <a [routerLink]="['/']">aquí</a></small>
                 <input type="submit" value="Entrar" class="btn btn-success btn-form btn-lg btn-block" [disabled]="!loginForm.form.valid"/>
             </form>
         </div>
