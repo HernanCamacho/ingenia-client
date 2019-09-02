@@ -2,8 +2,7 @@
     <div class="container">
         <div class="col-lg-8 form">
             <h3>{{title}}</h3>
-            <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
-                <div class="row">
+            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
                     <div class="form-group col-lg-6">
                         <label>Ingresa tu(s) nombre(s):</label>
                         <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" aria-describedby="firstNameHelp" placeholder="Nombre(s)" pattern=".{5,}" required>
@@ -15,13 +14,13 @@
                         <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" aria-describedby="lastNameHelp" placeholder="Apellido(s)" pattern=".{5,}" required>
                         <small class="form-text text-muted" *ngIf="!surname.valid && surname.touched">Necesitamos conocer tus apellidos.</small>
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-lg-8">
+                        <label>Correo electrónico:</label>
                         <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" aria-describedby="emailHelp" placeholder="Correo Electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                         <small class="form-text text-muted" *ngIf="!email.valid && email.touched">Nunca compartiremos tu correo electrónico con nadie más.</small>
                     </div>
                     <div class="form-group col-lg-4">
+                        <label>Teléfono celular:</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+52</div>
@@ -30,15 +29,15 @@
                         </div>
                         <small class="form-text text-muted" *ngIf="!phone_number.valid && phone_number.touched">Escribe tu número telefónico con lada.</small>
                     </div>
-                </div>
                 <div class="form-group col-lg-8">
+                    <label>Contraseña:</label>
                     <div class="input-group mb-2">
                         <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" aria-describedby="passwordHelp" placeholder="Contraseña" pattern="(?=^.{8,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                     </div>
                     <small class="form-text text-muted" *ngIf="!password.valid">Procura que tu constraseña sea única, tenga de 8-16 carácteres, al menos una letra mayúscula, al menos una minúscula, números y/o carácteres especiales.</small>
                     <!-- <small class="form-text text-muted" *ngIf="!password.valid && password.touched">Tus datos estarán seguros.</small> -->
                 </div>
-                <input type="submit" value="Registrarme" class="btn btn-success btn-form" [disabled]="!registerForm.form.valid"/>
+                <input type="submit" value="Registrarme" class="btn btn-success btn-form btn-lg btn-block" [disabled]="!registerForm.form.valid"/>
             </form>
         </div>
     </div>

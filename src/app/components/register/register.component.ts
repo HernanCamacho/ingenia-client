@@ -31,14 +31,11 @@ export class RegisterComponent implements OnInit {
     register(form) {
         this._userService.register(this.user).subscribe(
             response => {
-                if(response && response.data.token){
-                    this.token = response.data.token;
-                    this.identity = response.data.user;
-                    if(this._userService.persistData(this.token, this.identity)){
-                        this._router.navigate(['/home']);
+                if(response){
+                    if(response.message){
+                        this.title = response.message;
                     }else{
-                        this.status = true;
-                        console.log('Error en la persistencia de datos');
+                        this._router.navigate(['/login']);
                     }
                 }
             }, error => {
