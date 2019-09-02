@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreditCardsComponent } from './components/credit-cards/credit-cards.component';
 import { NavComponent } from './components/nav/nav.component';
+import { AddCreditCardComponent } from './components/add-credit-card/add-credit-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NavComponent } from './components/nav/nav.component';
     LoginComponent,
     HomeComponent,
     CreditCardsComponent,
-    NavComponent
+    NavComponent,
+    AddCreditCardComponent
   ],
   imports: [
     BrowserModule,

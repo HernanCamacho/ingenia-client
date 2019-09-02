@@ -1,0 +1,20 @@
+<div *ngIf="!loading">
+    <form #registerCreditCardForm="ngForm" (ngSubmit)="register(registerCreditCardForm)">
+        <div class="form-group col-lg-12">
+            <label>Número de tarjeta:</label>
+            <input type="text" name="credit_card_number" #credit_card_number="ngModel" [(ngModel)]="creditCard.credit_card_number" class="form-control" aria-describedby="firstNameHelp" placeholder="Número de tarjeta" pattern=".{10,}" required>
+            <small class="form-text text-muted" *ngIf="!credit_card_number.valid && credit_card_number.touched">Ingresa el número de tarjeta, es.</small>
+            <!-- <button type="button" class="btn btn-dark"><i class="fas fa-arrow-right"></i></button> -->
+        </div>
+        <div class="form-group col-lg-12">
+            <label>¿A qué usuario pertenece esta tarjeta?:</label>
+            <select name="user_id" class="custom-select" id="inputGroupSelect01" #user_id="ngModel" [(ngModel)]="creditCard.user_id">
+                <option *ngFor="let user of users" [ngValue]="user.id">{{user.email}}</option>
+            </select>
+        </div>
+        <input type="submit" value="Guardar" class="btn btn-success btn-form btn-lg btn-block" [disabled]="!registerCreditCardForm.form.valid"/>
+    </form>
+</div>
+<div *ngIf="loading">
+    <p>¡Listo! Quedó guardada la información, ahora puedes cerrar este cuadro.</p>
+</div>

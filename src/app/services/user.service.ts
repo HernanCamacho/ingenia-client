@@ -34,6 +34,11 @@ export class UserService{
         return this._http.get(this.url + 'users?page=' + page, {headers: headers});
     }
 
+    getAllUsers(page):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        return this._http.get(this.url + 'all-users', {headers: headers});
+    }
+
     getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity != "undefined"){

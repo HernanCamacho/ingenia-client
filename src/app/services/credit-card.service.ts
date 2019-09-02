@@ -16,7 +16,7 @@ export class CreditCardService{
 
     store(creditCard: CreditCard): Observable<any>{
         let params = JSON.stringify(creditCard);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
 
         return this._http.post(this.url+'ccards', params, {headers: headers});
     }
