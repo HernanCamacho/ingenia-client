@@ -13,6 +13,7 @@ import { CreditCardService } from '../../services/credit-card.service';
 export class AddCreditCardComponent implements OnInit {
 
     public user: User;
+    public users: User[];
     public creditCard: CreditCard;
     public loading: boolean;
 
@@ -21,13 +22,12 @@ export class AddCreditCardComponent implements OnInit {
          private _creditCardService: CreditCardService,
          private _router: Router
     ) {
-        this.user = new User("","","","","");
+        this.user = new User("","","","","","");
         this.creditCard = new CreditCard("","");
         this.loading = false;
     }
 
     ngOnInit() {
-        console.log(this.title);
         this.getUsers();
     }
 
@@ -39,9 +39,6 @@ export class AddCreditCardComponent implements OnInit {
                 }
             }, error => {
                 let errorMessage = <any>error;
-                if(errorMessage != null){
-                    this.status = true;
-                }
                 console.log(errorMessage);
             });
     }

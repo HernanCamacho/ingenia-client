@@ -22,6 +22,18 @@ export class UserService{
         return this._http.post(this.url+'register', params, {headers: headers});
     }
 
+    edit(id, user: User): Observable<any>{
+        let params = JSON.stringify(user);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        localStorage.setItem('identity', JSON.stringify(user));
+        return this._http.put(this.url+'users/' + id, params, {headers: headers});
+    }
+
+    delete(id): Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        return this._http.delete(this.url+'users/' + id, {headers: headers});
+    }
+
     login(user): Observable<any>{
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -29,12 +41,19 @@ export class UserService{
         return this._http.post(this.url + 'login', params, {headers: headers});
     }
 
+    logout(): Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        localStorage.clear();
+        this.identity = null;
+        return this._http.get(this.url + 'logout', {headers: headers});
+    }
+
     getUsers(page):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
         return this._http.get(this.url + 'users?page=' + page, {headers: headers});
     }
 
-    getAllUsers(page):Observable<any>{
+    getAllUsers():Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
         return this._http.get(this.url + 'all-users', {headers: headers});
     }

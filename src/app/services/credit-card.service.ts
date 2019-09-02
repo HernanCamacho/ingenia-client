@@ -21,19 +21,14 @@ export class CreditCardService{
         return this._http.post(this.url+'ccards', params, {headers: headers});
     }
 
+    delete(id): Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
+        return this._http.delete(this.url+'ccards/' + id, {headers: headers});
+    }
+
     getCreditCards(page):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer ' + this.getToken());
         return this._http.get(this.url + 'ccards?page=' + page, {headers: headers});
-    }
-
-    getIdentity(){
-        let identity = JSON.parse(localStorage.getItem('identity'));
-        if(identity != "undefined"){
-            this.identity = identity;
-        }else{
-            this.identity = null;
-        }
-        return this.identity;
     }
 
     getToken(){

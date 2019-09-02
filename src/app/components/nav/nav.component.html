@@ -12,5 +12,8 @@
         <a class="nav-link" [routerLink]="['/tarjetas']">Tarjetas</a>
       </li>
     </ul>
+    <span *ngIf="identity" class="navbar-text" (click)="logout()">
+      Cerrar sesión
+    </span>
   </div>
 </nav>

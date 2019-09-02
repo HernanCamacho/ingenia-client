@@ -17,7 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CreditCardsComponent } from './components/credit-cards/credit-cards.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AddCreditCardComponent } from './components/add-credit-card/add-credit-card.component';
-
+import { UserGuard } from './services/guard';
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,7 @@ import { AddCreditCardComponent } from './components/add-credit-card/add-credit-
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [UserService, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -27,14 +27,69 @@
                     <p>
                         <i class="fas fa-money-check-alt"></i>: {{ card.credit_card_number }}
                     </p>
+                    <a *ngIf="card.user[0] != null" href="#myModal{{card.user[0].id}}" class="btn btn-large btn-secondary" data-toggle="modal">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <div *ngIf="card.user[0]" class="modal fade" id="myModal{{card.user[0].id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar información</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="refresh()">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div *ngIf="!loading">
+                                        <form #editForm="ngForm" (ngSubmit)="editUser(editForm)">
+                                                <div class="form-group col-lg-12">
+                                                    <input type="text" name="name" #name="ngModel" [(ngModel)]="card.user[0].name" class="form-control" aria-describedby="firstNameHelp" placeholder="Nombre(s)" pattern=".{5,}" required>
+                                                    <small class="form-text text-muted" *ngIf="!name.valid && name.touched">Necesitamos conocer tu nombre.</small>
+                                                    <!-- <button type="button" class="btn btn-dark"><i class="fas fa-arrow-right"></i></button> -->
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <input type="text" name="surname" #surname="ngModel" [(ngModel)]="card.user[0].surname" class="form-control" aria-describedby="lastNameHelp" placeholder="Apellido(s)" pattern=".{5,}" required>
+                                                    <small class="form-text text-muted" *ngIf="!surname.valid && surname.touched">Necesitamos conocer tus apellidos.</small>
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <label>Correo electrónico:</label>
+                                                    <input type="email" name="email" #email="ngModel" [(ngModel)]="card.user[0].email" class="form-control" aria-describedby="emailHelp" placeholder="Correo Electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                                    <small class="form-text text-muted" *ngIf="!email.valid && email.touched">Nunca compartiremos tu correo electrónico con nadie más.</small>
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <label>Teléfono celular:</label>
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">+52</div>
+                                                        </div>
+                                                        <input type="tel" name="phone_number" #phone_number="ngModel" [(ngModel)]="card.user[0].phone_number" class="form-control" aria-describedby="phoneNumberHelp" placeholder="Teléfono" pattern="[0-9]{10,10}$" required>
+                                                    </div>
+                                                    <small class="form-text text-muted" *ngIf="!phone_number.valid && phone_number.touched">Escribe tu número telefónico con lada.</small>
+                                                </div>
+                                                <small></small>
+                                            <button type="button" (click)="update(card.user[0].id, card.user[0])" class="btn btn-primary btn-form btn-lg btn-block" data-dismiss="modal">
+                                                Actualizar
+                                            </button>
+                                            <button type="button" (click)="deleteProfile(card.id, card.user[0].id)" class="btn btn-secondary btn-form btn-lg btn-block" data-dismiss="modal">
+                                                Borrar perfil
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div *ngIf="loading">
+                                        <p>¡Listo! Quedó guardada la información, ahora puedes cerrar este cuadro.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <nav aria-label="Page navigation example" class="pages">
         <ul class="pagination">
-			<li class="page-item" *ngIf="page > 1"> <a class="page-link" [routerLink]="['/usuarios', pre_page]">Anterior</a></li>
-			<li class="page-item" *ngIf="page < pages"> <a class="page-link" [routerLink]="['/usuarios', next_page]">Siguiente</a></li>
+			<li class="page-item" *ngIf="page > 1"> <a class="page-link" [routerLink]="['/tarjetas', pre_page]">Anterior</a></li>
+			<li class="page-item" *ngIf="page < pages"> <a class="page-link" [routerLink]="['/tarjetas', next_page]">Siguiente</a></li>
 		</ul>
     </nav>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

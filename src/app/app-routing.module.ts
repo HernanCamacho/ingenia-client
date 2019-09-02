@@ -6,15 +6,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreditCardsComponent } from './components/credit-cards/credit-cards.component';
-
+import { UserGuard } from './services/guard';
 const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'registro', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'usuarios', component: UsersComponent},
-    {path: 'usuarios/:page', component: UsersComponent},
-    {path: 'tarjetas', component: CreditCardsComponent},
-    {path: 'tarjetas/:page', component: CreditCardsComponent},
+    {path: 'usuarios', component: UsersComponent, canActivate: [UserGuard]},
+    {path: 'usuarios/:page', component: UsersComponent, canActivate: [UserGuard]},
+    {path: 'tarjetas', component: CreditCardsComponent, canActivate: [UserGuard]},
+    {path: 'tarjetas/:page', component: CreditCardsComponent, canActivate: [UserGuard]},
     {path: '*', component: HomeComponent},
 ];
 
